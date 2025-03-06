@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>General Knowledge Quiz</title>
+</head>
+<body style="background: url('https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499316.jpg?semt=ais_hybrid'); background-size: cover; background-position: center;">
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 100;">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" width="50" height="50" style="cursor: pointer;">
+    </a>
+    <h2>General Knowledge Quiz</h2>
+    <div id="quiz-container">
+        <div id="questions">
+            <div>
+                <p>1. What is the capital of France?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Paris')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Paris</button>
+                    <button onclick="checkAnswer(this, 'London')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">London</button>
+                    <button onclick="checkAnswer(this, 'Berlin')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Berlin</button>
+                    <button onclick="checkAnswer(this, 'Madrid')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Madrid</button>
+                </div>
+            </div>
+            <div>
+                <p>2. Who wrote "Romeo and Juliet"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'William Shakespeare')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">William Shakespeare</button>
+                    <button onclick="checkAnswer(this, 'Charles Dickens')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Charles Dickens</button>
+                    <button onclick="checkAnswer(this, 'Mark Twain')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Mark Twain</button>
+                    <button onclick="checkAnswer(this, 'Jane Austen')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jane Austen</button>
+                </div>
+            </div>
+            <div>
+                <p>3. What is the largest planet in our solar system?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Jupiter')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jupiter</button>
+                    <button onclick="checkAnswer(this, 'Earth')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Earth</button>
+                    <button onclick="checkAnswer(this, 'Mars')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Mars</button>
+                    <button onclick="checkAnswer(this, 'Saturn')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Saturn</button>
+                </div>
+            </div>
+            <div>
+                <p>4. What is the chemical symbol for gold?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Au')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Au</button>
+                    <button onclick="checkAnswer(this, 'Ag')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Ag</button>
+                    <button onclick="checkAnswer(this, 'Fe')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Fe</button>
+                    <button onclick="checkAnswer(this, 'Pb')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Pb</button>
+                </div>
+            </div>
+            <div>
+                <p>5. Who painted the Sistine Chapel ceiling?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Michelangelo')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Michelangelo</button>
+                    <button onclick="checkAnswer(this, 'Leonardo da Vinci')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Leonardo da Vinci</button>
+                    <button onclick="checkAnswer(this, 'Raphael')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Raphael</button>
+                    <button onclick="checkAnswer(this, 'Donatello')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Donatello</button>
+                </div>
+            </div>
+        </div>
+        <button id="submit-quiz" onclick="submitQuiz()" style="display: block; margin: 20px auto; font-size: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #4CAF50; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;">
+            Submit Quiz
+        </button>
+        <div id="score" style="display:none; text-align: center; font-size: 24px; font-weight: bold; color: white; background-color: #333; padding: 10px; margin: 20px auto; width: 40%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"></div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(button, answer) {
+            const correctAnswers = ['Paris', 'William Shakespeare', 'Jupiter', 'Au', 'Michelangelo'];
+            if (correctAnswers.includes(answer)) {
+                button.style.backgroundColor = 'green'; // Change color to green if correct
+                score++;
+            } else {
+                button.style.backgroundColor = 'red'; // Change color to red if incorrect
+            }
+            // Disable all buttons after selection
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function submitQuiz() {
+            document.getElementById('score').innerHTML = `Your score is: ${score} out of 5`;
+            document.getElementById('score').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

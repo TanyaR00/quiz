@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Celebrities Quiz</title>
+</head>
+<body style="background: url('https://media.istockphoto.com/id/1268703224/vector/seamless-pattern-with-podcast-icons.jpg?s=612x612&w=0&k=20&c=GK0Db_rDH1itXH_B7RsNI1vXtNB6kd8CkfzRldFrxtg='); background-size: cover; background-position: center;">
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 100;">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" width="50" height="50" style="cursor: pointer;">
+    </a>
+    <h2>Celebrities Quiz</h2>
+    <div id="quiz-container">
+        <div id="questions">
+            <div>
+                <p>1. Who is known as the "Queen of Pop"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Madonna')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Madonna</button>
+                    <button onclick="checkAnswer(this, 'Beyoncé')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Beyoncé</button>
+                    <button onclick="checkAnswer(this, 'Lady Gaga')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Lady Gaga</button>
+                    <button onclick="checkAnswer(this, 'Taylor Swift')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Taylor Swift</button>
+                </div>
+            </div>
+            <div>
+                <p>2. Which actor played Jack Dawson in "Titanic"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Leonardo DiCaprio')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Leonardo DiCaprio</button>
+                    <button onclick="checkAnswer(this, 'Brad Pitt')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Brad Pitt</button>
+                    <button onclick="checkAnswer(this, 'Johnny Depp')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Johnny Depp</button>
+                    <button onclick="checkAnswer(this, 'Tom Cruise')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Tom Cruise</button>
+                </div>
+            </div>
+            <div>
+                <p>3. Who is the highest-paid actress in the world as of 2021?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Scarlett Johansson')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Scarlett Johansson</button>
+                    <button onclick="checkAnswer(this, 'Jennifer Lawrence')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jennifer Lawrence</button>
+                    <button onclick="checkAnswer(this, 'Angelina Jolie')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Angelina Jolie</button>
+                    <button onclick="checkAnswer(this, 'Meryl Streep')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Meryl Streep</button>
+                </div>
+            </div>
+            <div>
+                <p>4. Which singer is known for the hit song "Shape of You"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Ed Sheeran')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Ed Sheeran</button>
+                    <button onclick="checkAnswer(this, 'Justin Bieber')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Justin Bieber</button>
+                    <button onclick="checkAnswer(this, 'Drake')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Drake</button>
+                    <button onclick="checkAnswer(this, 'Khalid')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Khalid</button>
+                </div>
+            </div>
+            <div>
+                <p>5. Who won the Academy Award for Best Actor in 2020?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Joaquin Phoenix')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Joaquin Phoenix</button>
+                    <button onclick="checkAnswer(this, 'Brad Pitt')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Brad Pitt</button>
+                    <button onclick="checkAnswer(this, 'Leonardo DiCaprio')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Leonardo DiCaprio</button>
+                    <button onclick="checkAnswer(this, 'Tom Hanks')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Tom Hanks</button>
+                </div>
+            </div>
+        </div>
+        <button id="submit-quiz" onclick="submitQuiz()" style="display: block; margin: 20px auto; font-size: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #4CAF50; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;">
+            Submit Quiz
+        </button>
+        <div id="score" style="display:none; text-align: center; font-size: 24px; font-weight: bold; color: white; background-color: #333; padding: 10px; margin: 20px auto; width: 40%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"></div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(button, answer) {
+            const correctAnswers = ['Madonna', 'Leonardo DiCaprio', 'Scarlett Johansson', 'Ed Sheeran', 'Joaquin Phoenix'];
+            if (correctAnswers.includes(answer)) {
+                button.style.backgroundColor = 'green'; // Change color to green if correct
+                score++;
+            } else {
+                button.style.backgroundColor = 'red'; // Change color to red if incorrect
+            }
+            // Disable all buttons after selection
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function submitQuiz() {
+            document.getElementById('score').innerHTML = `Your score is: ${score} out of 5`;
+            document.getElementById('score').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Art Quiz</title>
+</head>
+<body style="background: url('https://png.pngtree.com/thumb_back/fh260/background/20220309/pngtree-colorful-botanical-aesthetic-line-art-background-image_1067261.jpg'); background-size: cover; background-position: center;">
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 100;">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" width="50" height="50" style="cursor: pointer;">
+    </a>
+    <h2>Art Quiz</h2>
+    <div id="quiz-container">
+        <div id="questions">
+            <div>
+                <p>1. Who painted the Mona Lisa?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Leonardo da Vinci')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Leonardo da Vinci</button>
+                    <button onclick="checkAnswer(this, 'Vincent van Gogh')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Vincent van Gogh</button>
+                    <button onclick="checkAnswer(this, 'Pablo Picasso')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Pablo Picasso</button>
+                    <button onclick="checkAnswer(this, 'Claude Monet')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Claude Monet</button>
+                </div>
+            </div>
+            <div>
+                <p>2. What is the art movement associated with Salvador Dalí?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Surrealism')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Surrealism</button>
+                    <button onclick="checkAnswer(this, 'Cubism')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Cubism</button>
+                    <button onclick="checkAnswer(this, 'Impressionism')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Impressionism</button>
+                    <button onclick="checkAnswer(this, 'Expressionism')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Expressionism</button>
+                </div>
+            </div>
+            <div>
+                <p>3. Which artist is known for the painting "The Starry Night"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Vincent van Gogh')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Vincent van Gogh</button>
+                    <button onclick="checkAnswer(this, 'Edvard Munch')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Edvard Munch</button>
+                    <button onclick="checkAnswer(this, 'Henri Matisse')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Henri Matisse</button>
+                    <button onclick="checkAnswer(this, 'Jackson Pollock')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jackson Pollock</button>
+                </div>
+            </div>
+            <div>
+                <p>4. What is the primary medium used in watercolor painting?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Water')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Water</button>
+                    <button onclick="checkAnswer(this, 'Oil')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Oil</button>
+                    <button onclick="checkAnswer(this, 'Acrylic')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Acrylic</button>
+                    <button onclick="checkAnswer(this, 'Gouache')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Gouache</button>
+                </div>
+            </div>
+            <div>
+                <p>5. Who is the famous street artist known for his graffiti art?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Banksy')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Banksy</button>
+                    <button onclick="checkAnswer(this, 'Shepard Fairey')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Shepard Fairey</button>
+                    <button onclick="checkAnswer(this, 'Keith Haring')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Keith Haring</button>
+                    <button onclick="checkAnswer(this, 'Jean-Michel Basquiat')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jean-Michel Basquiat</button>
+                </div>
+            </div>
+        </div>
+        <button id="submit-quiz" onclick="submitQuiz()" style="display: block; margin: 20px auto; font-size: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #4CAF50; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;">
+            Submit Quiz
+        </button>
+        <div id="score" style="display:none; text-align: center; font-size: 24px; font-weight: bold; color: white; background-color: #333; padding: 10px; margin: 20px auto; width: 40%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"></div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(button, answer) {
+            const correctAnswers = ['Leonardo da Vinci', 'Surrealism', 'Vincent van Gogh', 'Water', 'Banksy'];
+            if (correctAnswers.includes(answer)) {
+                button.style.backgroundColor = 'green'; // Change color to green if correct
+                score++;
+            } else {
+                button.style.backgroundColor = 'red'; // Change color to red if incorrect
+            }
+            // Disable all buttons after selection
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function submitQuiz() {
+            document.getElementById('score').innerHTML = `Your score is: ${score} out of 5`;
+            document.getElementById('score').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

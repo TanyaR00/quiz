@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Anime Quiz</title>
+</head>
+<body style="background: url('https://t3.ftcdn.net/jpg/06/39/60/10/360_F_639601076_O7HLXnAWoKBLaefyyF5V92YSk79OevC2.jpg'); background-size: cover; background-position: center;">
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 100;">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" width="50" height="50" style="cursor: pointer;">
+    </a>
+    <h2>Anime Quiz</h2>
+    <div id="quiz-container">
+        <div id="questions">
+            <div>
+                <p>1. What is the name of the main character in "Naruto"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Naruto Uzumaki')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Naruto Uzumaki</button>
+                    <button onclick="checkAnswer(this, 'Sasuke Uchiha')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Sasuke Uchiha</button>
+                    <button onclick="checkAnswer(this, 'Sakura Haruno')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Sakura Haruno</button>
+                    <button onclick="checkAnswer(this, 'Kakashi Hatake')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Kakashi Hatake</button>
+                </div>
+            </div>
+            <div>
+                <p>2. In "One Piece", what is Luffy's dream?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'To become the Pirate King')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">To become the Pirate King</button>
+                    <button onclick="checkAnswer(this, 'To find the One Piece')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">To find the One Piece</button>
+                    <button onclick="checkAnswer(this, 'To become the strongest swordsman')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">To become the strongest swordsman</button>
+                    <button onclick="checkAnswer(this, 'To save his friends')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">To save his friends</button>
+                </div>
+            </div>
+            <div>
+                <p>3. What is the name of the school in "My Hero Academia"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'U.A. High School')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">U.A. High School</button>
+                    <button onclick="checkAnswer(this, 'Shiketsu High School')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Shiketsu High School</button>
+                    <button onclick="checkAnswer(this, 'Ketsubutsu Academy')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Ketsubutsu Academy</button>
+                    <button onclick="checkAnswer(this, 'Yuei Academy')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Yuei Academy</button>
+                </div>
+            </div>
+            <div>
+                <p>4. Who is the author of "Attack on Titan"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Hajime Isayama')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Hajime Isayama</button>
+                    <button onclick="checkAnswer(this, 'Masashi Kishimoto')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Masashi Kishimoto</button>
+                    <button onclick="checkAnswer(this, 'Eiichiro Oda')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Eiichiro Oda</button>
+                    <button onclick="checkAnswer(this, 'Tite Kubo')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Tite Kubo</button>
+                </div>
+            </div>
+            <div>
+                <p>5. What is the main theme of "Death Note"?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Justice and Morality')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Justice and Morality</button>
+                    <button onclick="checkAnswer(this, 'Friendship')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Friendship</button>
+                    <button onclick="checkAnswer(this, 'Love')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Love</button>
+                    <button onclick="checkAnswer(this, 'Betrayal')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Betrayal</button>
+                </div>
+            </div>
+        </div>
+        <button id="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+        <div id="score" style="display:none; text-align: center; font-size: 24px; font-weight: bold; color: white; background-color: #333; padding: 10px; margin: 20px auto; width: 40%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"></div>
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(button, answer) {
+            const correctAnswers = ['Naruto Uzumaki', 'To become the Pirate King', 'U.A. High School', 'Hajime Isayama', 'Justice and Morality'];
+            if (correctAnswers.includes(answer)) {
+                button.style.backgroundColor = 'green'; // Change color to green if correct
+                score++;
+            } else {
+                button.style.backgroundColor = 'red'; // Change color to red if incorrect
+            }
+            // Disable all buttons after selection
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function submitQuiz() {
+            document.getElementById('score').innerHTML = `Your score is: ${score} out of 5`;
+            document.getElementById('score').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

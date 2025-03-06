@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sports Quiz</title>
+</head>
+<body style="background: url('https://www.stackadapt.com/resources/wp-content/uploads/sites/2/2023/08/20230726_Major-League-Campaigns-Refresh-Social-Image.jpg'); background-size: cover; background-position: center;">
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 100;">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" width="50" height="50" style="cursor: pointer;">
+    </a>
+    <h2>Sports Quiz</h2>
+    <div id="quiz-container">
+        <div id="questions">
+            <div>
+                <p>1. Which country won the FIFA World Cup in 2018?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'France')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">France</button>
+                    <button onclick="checkAnswer(this, 'Brazil')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Brazil</button>
+                    <button onclick="checkAnswer(this, 'Germany')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Germany</button>
+                    <button onclick="checkAnswer(this, 'Argentina')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Argentina</button>
+                </div>
+            </div>
+            <div>
+                <p>2. Who holds the record for the most home runs in a single MLB season?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Barry Bonds')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Barry Bonds</button>
+                    <button onclick="checkAnswer(this, 'Babe Ruth')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Babe Ruth</button>
+                    <button onclick="checkAnswer(this, 'Hank Aaron')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Hank Aaron</button>
+                    <button onclick="checkAnswer(this, 'Mark McGwire')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Mark McGwire</button>
+                </div>
+            </div>
+            <div>
+                <p>3. In which sport would you perform a slam dunk?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Basketball')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Basketball</button>
+                    <button onclick="checkAnswer(this, 'Football')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Football</button>
+                    <button onclick="checkAnswer(this, 'Baseball')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Baseball</button>
+                    <button onclick="checkAnswer(this, 'Hockey')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Hockey</button>
+                </div>
+            </div>
+            <div>
+                <p>4. Who is known as the fastest man in the world?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Usain Bolt')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Usain Bolt</button>
+                    <button onclick="checkAnswer(this, 'Carl Lewis')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Carl Lewis</button>
+                    <button onclick="checkAnswer(this, 'Jesse Owens')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Jesse Owens</button>
+                    <button onclick="checkAnswer(this, 'Tyson Gay')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Tyson Gay</button>
+                </div>
+            </div>
+            <div>
+                <p>5. Which country hosted the 2016 Summer Olympics?</p>
+                <div style="text-align: center;">
+                    <button onclick="checkAnswer(this, 'Brazil')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">Brazil</button>
+                    <button onclick="checkAnswer(this, 'China')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">China</button>
+                    <button onclick="checkAnswer(this, 'UK')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">UK</button>
+                    <button onclick="checkAnswer(this, 'USA')"style="font-size: 15px; padding: 10px; background-color: #FFEBB5;">USA</button>
+                </div>
+            </div>
+        </div>
+        <button id="submit-quiz" onclick="submitQuiz()" style="display: block; margin: 20px auto; font-size: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #4CAF50; color: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;">
+            Submit Quiz
+        </button>
+
+        <div id="score" style="display:none; text-align: center; font-size: 24px; font-weight: bold; color: white; background-color: #333; padding: 10px; margin: 20px auto; width: 40%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"></div>
+
+    </div>
+
+    <script>
+        let score = 0;
+
+        function checkAnswer(button, answer) {
+            const correctAnswers = ['France', 'Barry Bonds', 'Basketball', 'Usain Bolt', 'Brazil'];
+            if (correctAnswers.includes(answer)) {
+                button.style.backgroundColor = 'green'; // Change color to green if correct
+                score++;
+            } else {
+                button.style.backgroundColor = 'red'; // Change color to red if incorrect
+            }
+            // Disable all buttons after selection
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function submitQuiz() {
+            document.getElementById('score').innerHTML = `Your score is: ${score} out of 5`;
+            document.getElementById('score').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
