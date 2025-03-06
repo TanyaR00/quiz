@@ -73,12 +73,11 @@
         function checkAnswer(button, answer) {
             const correctAnswers = ['France', 'Barry Bonds', 'Basketball', 'Usain Bolt', 'Brazil'];
             if (correctAnswers.includes(answer)) {
-                button.style.backgroundColor = 'green'; // Change color to green if correct
+                button.style.backgroundColor = 'green'; 
                 score++;
             } else {
-                button.style.backgroundColor = 'red'; // Change color to red if incorrect
-            }
-            // Disable all buttons after selection
+                button.style.backgroundColor = 'red'; 
+           
             const buttons = button.parentElement.querySelectorAll('button');
             buttons.forEach(btn => btn.disabled = true);
         }
